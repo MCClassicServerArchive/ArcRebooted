@@ -1,0 +1,44 @@
+[entitylist]
+
+[rankzones]
+
+[userzones]
+
+[mines]
+
+[cmdblocks]
+
+[msgblocks]
+
+[portals]
+
+[worldbans]
+
+[ops]
+
+[builders]
+
+[options]
+finite_water = True
+physics = False
+autoshutdown = False
+zoned = False
+private = False
+all_build = True
+owner = AndrewPH
+
+[spawn]
+h = 0
+z = 32
+y = 34
+x = 32
+
+[size]
+z = 64
+y = 64
+x = 64
+
+[cfginfo]
+version = 1.5.0
+name = world.meta
+
