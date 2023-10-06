@@ -36,9 +36,9 @@ class PlayerData(object):
     def loadData(self):
         "Loads the player's data file"
         if os.path.isfile(
-            "data/players/%s.ini" % self.username): # Check if the file exists ( Much more efficient than x in os.listdir() )
+            os.getcwd() + "/data/players/%s.ini" % self.username): # Check if the file exists ( Much more efficient than x in os.listdir() )
             try:
-                self.dataReader.read("data/players/%s.ini" % self.username) # Have ConfigParser read it
+                self.dataReader.read(os.getcwd() + "/data/players/%s.ini" % self.username) # Have ConfigParser read it
             except Exception as e: # If we can't read it, say that
                 self.logger.error("Unable to read player data for %s!" % self.username)
                 self.logger.error("Error: %s" % e)
@@ -49,9 +49,9 @@ class PlayerData(object):
             self.logger.debug("No player data file for %s found." % self.username)
             self.logger.info(
                 "Creating data file data/players/%s.ini using template data/DEFAULT_TEMPLATE_PLAYER.ini" % self.username)
-            shutil.copy("data/DEFAULT_TEMPLATE_PLAYER.ini", "data/players/%s.ini" % self.username)
+            shutil.copy(os.getcwd() + "/data/DEFAULT_TEMPLATE_PLAYER.ini", os.getcwd() + "/data/players/%s.ini" % self.username)
             try:
-                self.dataReader.read("data/players/%s.ini" % self.username) # Have ConfigParser read it
+                self.dataReader.read(os.getcwd() + "/data/players/%s.ini" % self.username) # Have ConfigParser read it
             except Exception as e: # If we can't read it, say that
                 self.logger.error("Unable to read player data for %s!" % self.username)
                 self.logger.error("Error: %s" % e)
@@ -76,7 +76,7 @@ class PlayerData(object):
     def loadDataFallback(self):
         "Called when loading data fails. Prevents data saving and loads the default data values."
         self.factory.logger.warn("Settings will not be saved. Default data being used.")
-        self.dataReader.read("data/DEFAULT_TEMPLATE_PLAYER.ini")
+        self.dataReader.read(os.getcwd() + "/data/DEFAULT_TEMPLATE_PLAYER.ini")
         sections = self.dataReader.sections()
         try:
             for element in sections:
@@ -102,7 +102,7 @@ class PlayerData(object):
                 username = self.username
             self.logger.debug("Saving data/players/%s.ini..." % username)
             try:
-                fp = open("data/players/%s.ini" % username, "w")
+                fp = open(os.getcwd() + "/data/players/%s.ini" % username, "w")
             except Exception as e:
                 self.logger.error("Unable to open data/players/%s.ini for writing!" % username)
                 self.logger.error("Error: %s" % e)
